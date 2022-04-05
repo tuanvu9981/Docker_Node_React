@@ -5,6 +5,9 @@
 npx create-react-app@5.0.0 frontend
 ```
 
+### CSS !important
+* Any CSS style before has conflict --> OVERRIDDEN BY !important attribute
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Available Scripts
