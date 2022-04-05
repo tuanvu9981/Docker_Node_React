@@ -26,7 +26,7 @@ export default function Todo({ name, priority }) {
                 {name}
             </Checkbox>
 
-            <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
+            <Tag color={priorityColorMapping[priority]} style={{ margin: 5 }}>
                 {priority}
             </Tag>
         </Row>

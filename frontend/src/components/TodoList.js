@@ -1,13 +1,21 @@
 import { Col, Row, Input, Button, Select, Tag } from "antd";
 import Todo from "./Todo";
 
-export default function TodoList() {
+export default function TodoList({ todos }) {
     return (
         <Row style={{ height: 'calc(100% - 40px)' }}>
             <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-                <Todo name='Learn React' priority='High' />
+                {todos.map((todo) => {
+                    return (
+                        <Todo
+                            name={todo.name}
+                            priority={todo.priority}
+                        />
+                    );
+                })}
+                {/* <Todo name='Learn React' priority='High' />
                 <Todo name='Learn Redux' priority='Medium' />
-                <Todo name='Doing morning exercise' priority='Low' />
+                <Todo name='Doing morning exercise' priority='Low' /> */}
             </Col>
 
             <Col span={24}>
