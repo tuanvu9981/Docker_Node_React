@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const { URI } = require('../backend/.env');
-const mainRoutes = require('./server/routes/main')
+const mainRoutes = require('./server/routes/mainRoutes')
 
 // import express from 'express';
 // import bodyParser from 'body-parser';
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/todo/', mainRoutes);
+app.use('/api/', mainRoutes);
 
 app.listen(port, () => {
     console.log(`Running at port: ${port}`);
