@@ -13,15 +13,15 @@ function createTodo(req, res) {
         .save()
         .then((newTodo) => {
             return res.status(200).json({
-                status: "OK",
-                todo: newTodo,
+                "status": "OK",
+                "todo": newTodo,
             });
         })
         .catch((error) => {
             console.log(error);
             res.status(500).json({
-                status: "ERR",
-                error: error.message,
+                "status": "ERR",
+                "error": error.message,
             })
         });
 }

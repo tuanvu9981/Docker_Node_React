@@ -2,23 +2,8 @@ import { Typography, Divider } from 'antd';
 import './App.css';
 import TodoList from './components/TodoList';
 import Filters from './components/Filter';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => { getAllTodo() }, []);
-
-  const getAllTodo = async () => {
-    const res = await axios.get('http://localhost:8000/api/todo/getAll');
-    if (res.data.status === "OK") {
-      console.log("DONE!");
-      setTodos(res.data.todos);
-    } else {
-      console.log(res.data.error);
-    }
-  }
 
   return (
     <div
@@ -37,7 +22,7 @@ function App() {
       <Typography style={{ textAlign: 'center' }}>TODO APP with REDUX</Typography>
       <Filters />
       <Divider />
-      <TodoList todos={todos} />
+      <TodoList />
     </div>
   );
 }
