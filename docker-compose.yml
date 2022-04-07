@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app/backend
+    networks:
+      - app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    ports: 
+      - 3000:3000
+    volumes: 
+      - ./reactjs:/app/frontend
+    depends_on:
+      - backend
+    networks: 
+      - app
+
+networks:
+  app:
+    driver: bridge
