@@ -8,6 +8,7 @@ export default function TodoList({ todos }) {
                 {todos.map((todo) => {
                     return (
                         <Todo
+                            key={todo._id}
                             name={todo.name}
                             priority={todo.priority}
                         />

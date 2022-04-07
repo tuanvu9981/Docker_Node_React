@@ -11,8 +11,13 @@ function App() {
   useEffect(() => { getAllTodo() }, []);
 
   const getAllTodo = async () => {
-    const allTodos = await axios.get('http://localhost:8000/getAllTodo');
-    setTodos(allTodos);
+    const res = await axios.get('http://localhost:8000/api/todo/getAll');
+    if (res.data.status === "OK") {
+      console.log("DONE!");
+      setTodos(res.data.todos);
+    } else {
+      console.log(res.data.error);
+    }
   }
 
   return (
