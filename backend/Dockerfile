@@ -1,8 +1,13 @@
-FROM node:16
+FROM node:12.10.0-alpine
+
 WORKDIR /app/backend
 
-COPY . .
+COPY package.json ./
+
 RUN npm install
 
+COPY . .
+
 EXPOSE 8000
-CMD npm start
+
+CMD ["node", "app.js"]
