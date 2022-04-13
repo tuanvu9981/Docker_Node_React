@@ -11,3 +11,5 @@ COPY . .
 EXPOSE 3000
 
 CMD ["npm", "start"]
+
+# WORKDIR /app/frontend & COPY . . --> COPY EVERYTHING EXCEPT FOLDER/FILE(s) IN .dockerignore INSIDE ./frontend
