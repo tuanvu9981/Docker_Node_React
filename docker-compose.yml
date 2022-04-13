@@ -1,6 +1,20 @@
 version: '3.3'
 
 services:
+
+  mongodb:
+    image: mongo:5.0
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root 
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - app
+    ports:
+      - 27018:27018
+    volumes:
+      - :/data
+
   backend:
     build:
       context: ./backend
@@ -9,6 +23,8 @@ services:
       - 8000:8000
     volumes:
       - ./backend:/app/backend
+    # depends_on:
+    #   - db
     networks:
       - app
 
