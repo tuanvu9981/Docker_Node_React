@@ -16,7 +16,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    tty: true
     ports: 
       - 3000:3000
     volumes: 
@@ -29,3 +28,15 @@ services:
 networks:
   app:
     driver: bridge 
+
+# 1. Run and test/make migrate with a running container:     
+# docker exec -it <container_id with docker ps> sh
+
+# 2. Volume: (Real folder):(Virtual folder) --> Purpose: Backup data
+
+# 3. Build container from Dockerfile instead of pure image(s): 
+# build:
+#   context: ./backend
+#   dockerfile: Dockerfile
+
+# 4.  

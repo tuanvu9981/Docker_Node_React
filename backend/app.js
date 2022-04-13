@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
-const { URI } = require('../backend/.env');
+const { URI } = require('../backend/config/.env');
 const mainRoutes = require('./server/routes/mainRoutes')
 
 // import express from 'express';
