@@ -32,7 +32,7 @@ mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log("Database connected !");
     })
     .catch((error) => {
-        console.log("ERROR: Cannot connect DB !");
+        console.log(error);
     });
 
 const port = 8000;

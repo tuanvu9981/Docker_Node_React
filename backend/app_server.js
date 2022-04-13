@@ -5,18 +5,27 @@ const logger = require('morgan');
 const cors = require('cors');
 const mainRoutes = require('./server/routes/mainRoutes')
 
+var corsOptions = {
+    origin: "http://localhost:3000"
+}
+
+// ALL URL CAN ACCESS
+// app.use(cors());
+
 //Set up dependencies
 const app = express();
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
-mongoose.connect('mongodb://mongodb:27018')
+
+mongoose.connect("mongodb://localhost:27018")
     .then(() => {
         console.log("Database connected !");
     })
     .catch((error) => {
-        console.log("ERROR: Cannot connect DB !");
+        console.log(error);
     });
 
 const port = 8000;
@@ -28,8 +37,6 @@ app.get('/', (req, res) => {
     });
 });
 
-// ALL URL CAN ACCESS
-app.use(cors());
 app.use('/api/', mainRoutes);
 
 app.listen(port, () => {
