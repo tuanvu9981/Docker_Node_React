@@ -10,6 +10,8 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["node", "app.js"]
+# CMD ["node", "app.js"]
+
+CMD ["node", "app_server.js"]
 
 # WORKDIR /app/backend & COPY . . --> COPY EVERYTHING EXCEPT FOLDER/FILE(s) IN .dockerignore INSIDE ./backend

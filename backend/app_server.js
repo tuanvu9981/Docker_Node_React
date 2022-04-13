@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
 const mainRoutes = require('./server/routes/mainRoutes')
+const env = require('./config/.desktop-env')
 
 var corsOptions = {
     origin: "http://localhost:3000"
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
 
-mongoose.connect("mongodb://localhost:27018")
+mongoose.connect('mongodb://mongodb:27017/todo_db')
     .then(() => {
         console.log("Database connected !");
     })

@@ -8,3 +8,6 @@
 
 #### Remove all images and containers:
 * [Remove containers & images](https://stackoverflow.com/questions/44785585/docker-how-to-delete-all-local-docker-images)
+
+#### Re-create images and containers: 
+```docker-compose up --build```
