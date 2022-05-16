@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
 
-mongoose.connect('mongodb://mongo_db:27017/todo_db')
+mongoose.connect('mongodb://tuanvu:123456@mongo_db:27017')
     .then(() => {
         console.log("Database connected !");
     })
