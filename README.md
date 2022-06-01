@@ -1,5 +1,21 @@
 ## A small todo app to learn Docker.
 
+### How to run 
+* Windows: 
+	* Sau khi clone repo github về, copy file môi trường chứa USERNAME & PASSWORD: 
+	```
+	D:\Docker_Node_React\backend> copy env.example.js env.js 
+	```
+	* File mới env.js sẽ được dùng trong project & bị đưa vào .gitignore 
+
+* Linux Ubuntu
+	* Sau khi clone repo github về, copy file môi trường chứa USERNAME & PASSWORD: 
+	```
+	 ~ /Docker_Node_React/backend $ cp env.example.js env.js 
+	```
+	* File mới env.js sẽ được dùng trong project & bị đưa vào .gitignore 
+
+
 ### Create Dockerfile for backend (Nodejs)
 * [Nodejs Docker](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
 
@@ -79,3 +95,12 @@ docker exec -it <container_id_or_name> bash
 docker stop <container-name/ID>
 ```
 
+8. Volume: (Real folder):(Virtual folder) --> Purpose: Backup data
+
+9. Build container from Dockerfile instead of pure image(s): 
+```
+build:
+   context: ./backend1
+   dockerfile: Dockerfile
+```
+  
