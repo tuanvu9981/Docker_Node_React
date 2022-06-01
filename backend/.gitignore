@@ -1,5 +1,4 @@
 /node_modules
 /.vscode
 /.idea
-.env.js
-.desktop-env
+env.js
