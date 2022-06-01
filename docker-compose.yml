@@ -3,58 +3,21 @@ version: '3.3'
 services:
 
 ################## DESKTOP ##################
-  # mongo_db:
-  #   image: mongo:5.0.2
-  #   env_file: ./.env
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
-  #     - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
-  #     - MONGO_INITDB_DATABASE=${MONGODB_DATABASE_NAME}
-  #   ports:
-  #     - ${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}
-  #   # volumes:
-  #   #   - .data: /var/lib/mongo
-  #   networks:
-  #     - app
+  mongo_db:
+    image: mongo:5.0.2
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGODB_DATABASE_NAME}
+    ports:
+      - ${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}
+    # volumes:
+    #   - .data: /var/lib/mongo
+    networks:
+      - app
 
-  # backend:
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   env_file: ./.env
-  #   ports:
-  #     - ${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}
-  #   # volumes:
-  #   #   - ./backend:/app/backend
-  #   environment:
-  #     - DB_HOST=mongodb
-  #     - DB_USER=${MONGODB_USER}
-  #     - DB_PASSWORD=${MONGODB_PASSWORD}
-  #     - DB_NAME=${MONGODB_DATABASE_NAME}
-  #     - DB_PORT=${MONGODB_DOCKER_PORT}
-  #   depends_on:
-  #     - mongo_db
-  #   networks:
-  #     - app
-
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   env_file: ./.env
-  #   ports: 
-  #     - ${REACT_LOCAL_PORT}:${REACT_DOCKER_PORT}
-  #   volumes: 
-  #     - ./frontend:/app/frontend
-  #   depends_on:
-  #     - backend
-  #   networks: 
-  #     - app
-################## DESKTOP ##################
-
-
-################## ATLAS ##################
-  backend_atlas:
+  backend_desktop:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -69,10 +32,12 @@ services:
       - DB_PASSWORD=${MONGODB_PASSWORD}
       - DB_NAME=${MONGODB_DATABASE_NAME}
       - DB_PORT=${MONGODB_DOCKER_PORT}
+    depends_on:
+      - mongo_db
     networks:
       - app
 
-  frontend_atlas:
+  frontend_desktop:
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -82,9 +47,44 @@ services:
     # volumes: 
     #   - ./frontend:/app/frontend
     depends_on:
-      - backend_atlas
+      - backend_desktop
     networks: 
       - app
+################## DESKTOP ##################
+
+
+################## ATLAS ##################
+  # backend_atlas:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   env_file: ./.env
+  #   ports:
+  #     - ${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}
+  #   # volumes:
+  #   #   - ./backend:/app/backend
+  #   environment:
+  #     - DB_HOST=mongodb
+  #     - DB_USER=${MONGODB_USER}
+  #     - DB_PASSWORD=${MONGODB_PASSWORD}
+  #     - DB_NAME=${MONGODB_DATABASE_NAME}
+  #     - DB_PORT=${MONGODB_DOCKER_PORT}
+  #   networks:
+  #     - app
+
+  # frontend_atlas:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   env_file: ./.env
+  #   ports: 
+  #     - ${REACT_LOCAL_PORT}:${REACT_DOCKER_PORT}
+  #   # volumes: 
+  #   #   - ./frontend:/app/frontend
+  #   depends_on:
+  #     - backend_atlas
+  #   networks: 
+  #     - app
 ################## ATLAS ##################
 networks:
   app:
