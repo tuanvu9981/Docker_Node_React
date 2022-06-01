@@ -1,29 +1,26 @@
-import { Typography, Divider } from 'antd';
 import './App.css';
-import TodoList from './components/TodoList';
-import Filters from './components/Filter';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import SignIn from './pages/SignIn/SignIn';
+import SignUp from './pages/SignUp/SignUp';
+import MyTodoListPage from './pages/MyTodoListPage';
 
 function App() {
 
   return (
-    <div
-      style={{
-        width: 600,
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'white',
-        padding: 20,
-        boxShadow: '0 0 10px 4px #bfbfbf',
-        borderRadius: 5,
-        height: '90vh'
-      }}
-    >
-      <Typography style={{ textAlign: 'center' }}>TODO APP with REDUX</Typography>
-      <Filters />
-      <Divider />
-      <TodoList />
-    </div>
+    <BrowserRouter>
+      <Routes>
+
+        <Route path='/' element={<SignIn />} />
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/todo-list-page' element={<MyTodoListPage />} />
+
+        {/* <Route path='/my-todo-list-page'>
+          <Route path='id' element={ <MyTodoListPage/>}/>
+        </Route> */}
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
