@@ -6,6 +6,11 @@ const cors = require('cors');
 const URI = require('../backend/env').URI;
 const mainRoutes = require('./server/routes/mainRoutes')
 
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20');
+const googleClientID = require('../backend/env').googleClientID;
+const googleClientSecret = require('../backend/env').googleClientSecret;
+
 var corsOptions = {
     origin: "http://localhost:3000"
 }
@@ -13,13 +18,26 @@ var corsOptions = {
 // ALL URL CAN ACCESS
 // app.use(cors());
 
-//Set up dependencies
+const port = 8000;
+
+// Set up dependencies for express, logger, cors
 const app = express();
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
+// Set up passport for Google Account;
+passport.use(new GoogleStrategy(
+    {
+        clientID: googleClientID,
+        clientSecret: googleClientSecret,
+        callbackURL: '/auth/google/callback'
+    },
+    accessToken => {
+        console.log(accessToken);
+    }
+));
 
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -29,14 +47,19 @@ mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log(error);
     });
 
-const port = 8000;
-
 //set up route
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to MERN Project'
     });
 });
+
+app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })
+);
 
 app.use('/api/', mainRoutes);
 
