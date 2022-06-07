@@ -58,7 +58,7 @@ docker run -it -p 3000:3000 docker_node_react_frontend
 ```
 docker-compose exec <mongo_host_name> bash
 ```
-+ **<mongo_host_name>** ở đây là tên được đặt trong file docker-compose.yml, mà chứa image docker 
++ **mongo_host_name** ở đây là tên được đặt trong file docker-compose.yml, mà chứa image docker 
 * Khi giao diện hiển thị dòng có mongo ... #, tiến hành nhập 
 ```
 mongo -u <username> -p <password>
@@ -71,7 +71,7 @@ mongo -u <username> -p <password>
 mongodb://<username>:<password>@<mongo_host_name>:<port>
 ```
 
-+ **<mongo_host_name>** ở đây là tên được đặt trong file docker-compose.yml, mà chứa image docker 
++ **mongo_host_name** ở đây là tên được đặt trong file docker-compose.yml, mà chứa image docker 
 VD: 
 ```
 mongodb://tuanvu:123456@mongo_db:27017
